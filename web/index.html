@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>XMRig Proxy</title>
+    <meta
+      content="width=1000, initial-scale=0.5, maximum-scale=1, user-scalable=yes"
+      name="viewport"
+    />
+    <link rel="icon" href="img/favicon.svg" type="image/x-icon" />
+    <link
+      href="https://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.bootcss.com/ionicons/2.0.0/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.bootcss.com/datatables/1.10.16/css/dataTables.bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+      <header class="main-header">
+        <nav class="navbar-default navbar-static-top navbar-light bg-faded">
+          <div class="container">
+            <div class="navbar-header">
+              <a href="" class="navbar-brand"
+                ><img src="img/favicon.svg" alt="Icon"/ height="29px">
+                <b>XMRig</b>Proxy</a
+              >
+            </div>
+
+            <div class="navbar-default pull-right">
+              <ul class="nav navbar-nav">
+                <li><span id="best" class="navbar-text"></span></li>
+                <li><span id="latency" class="navbar-text"></span></li>
+                <li><span id="avg_time" class="navbar-text"></span></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="container">
+          <section class="content">
+            <div class="row">
+              <div id="main">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-ios-world-outline"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Online workers</span>
+                        <span class="info-box-number" id="activeworkers"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-red"
+                        ><i class="ion ion-ios-world"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Offline workers</span>
+                        <span
+                          class="info-box-number"
+                          id="notactiveworkers"
+                        ></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-blue"
+                        ><i class="ion ion-clock"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Online Time</span>
+                        <span class="info-box-number" id="time"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-aqua"
+                        ><i class="ion ion-ios-toggle"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Mode</span>
+                        <span class="info-box-number" id="mode"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-flag"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text"
+                          >Shares (Accepted / Total)</span
+                        >
+                        <span
+                          class="info-box-number"
+                          id="acceptedshares"
+                        ></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-red"
+                        ><i class="ion ion-cloud"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Total hashes</span>
+                        <span class="info-box-number" id="hashes"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-blue"
+                        ><i class="ion ion-waterdrop"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Effort</span>
+                        <span class="info-box-number" id="effort"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-maroon"
+                        ><i class="ion ion-alert-circled"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Version</span>
+                        <span class="info-box-number" id="version"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-speedometer"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Hashrate 1m</span>
+                        <span class="info-box-number" id="hashrate"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-speedometer"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Hashrate 10m</span>
+                        <span class="info-box-number" id="hashrate10m"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-speedometer"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Hashrate 1h</span>
+                        <span class="info-box-number" id="hashrate1h"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-speedometer"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Hashrate 12h</span>
+                        <span class="info-box-number" id="hashrate12h"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-speedometer"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Hashrate 24h</span>
+                        <span class="info-box-number" id="hashrate24h"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"
+                        ><i class="ion ion-speedometer"></i
+                      ></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Hashrate All</span>
+                        <span class="info-box-number" id="hashrate-all"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="box box-success">
+                  <div class="box-header">
+                    <h3 class="box-title">Online workers</h3>
+                  </div>
+                  <div class="box-body">
+                    <table
+                      id="workerstable"
+                      class="table table-bordered table-hover table-striped"
+                      style="width: 100%"
+                    ></table>
+                  </div>
+                </div>
+                <div class="box box-danger">
+                  <div class="box-header">
+                    <h3 class="box-title">Offline workers</h3>
+                  </div>
+                  <div class="box-body">
+                    <table
+                      id="naworkerstable"
+                      class="table table-bordered table-hover table-striped"
+                      style="width: 100%"
+                    ></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.bootcss.com/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
