@@ -1,5 +1,5 @@
 <img align="right" src="https://sonarcloud.io/api/project_badges/quality_gate?project=Toomas633_XMRig-Proxy">
-<img align="left" src="https://github.com/Toomas633/XMRig-Proxy/actions/workflows/docker.yml/badge.svg?branch=main">
+<img align="left" src="https://github.com/Toomas633/XMRig-Proxy/actions/workflows/docker.yml/badge.svg">
 <br>
 
 # XMRig Proxy
