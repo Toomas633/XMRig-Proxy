@@ -45,4 +45,6 @@ RUN chmod +x /entrypoint.sh
 
 COPY web /var/www/html
 
+COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+
 ENTRYPOINT ["/entrypoint.sh"]
