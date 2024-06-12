@@ -1,54 +1,42 @@
 html,
 body {
   height: 100%;
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
-  font-size: 0.875rem;
+  font-size: 0.875rem !important;
 }
 
 .main-header {
   position: relative;
   z-index: 1030;
+  height: 3.938rem;
+  background-color: #ffffff;
 }
 
 .main-header .navbar {
   transition: margin-left 0.3s ease-in-out;
   margin-bottom: 0;
   border: none;
-  height: 6.25rem;
   border-radius: 0;
 }
 
-.main-header .navbar-custom-menu,
-.main-header .navbar-right {
-  float: right;
+.main-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-@media (max-width: 61.9375rem) {
-  .main-header .navbar-custom-menu a,
-  .main-header .navbar-right a {
-    color: inherit;
-    background: transparent;
-  }
+.navbar-header {
+  display: flex;
 }
 
-@media (max-width: 47.9375rem) {
-  .main-header .navbar-right {
-    float: none;
-  }
-  .navbar-collapse .main-header .navbar-right {
-    margin: 0.46875rem -0.9375rem;
-  }
-  .main-header .navbar-right > li {
-    color: inherit;
-    border: 0;
-  }
+.navbar-brand {
+  font-size: 1rem !important;
 }
 
 .wrapper {
   height: 100%;
+  background-color: #ecf0f5;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
@@ -65,38 +53,21 @@ body {
 }
 
 .content-wrapper {
-  transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-  z-index: 820;
-  min-height: 100%;
-  background-color: #ecf0f5;
-}
-
-@media (max-width: 47.9375rem) {
-  .content-wrapper {
-    margin-left: 0;
-  }
+  height: calc(100% - 3.938rem);
 }
 
 .content {
-  min-height: 15.625rem;
-  padding: 0.9375rem;
-  margin: 0 auto;
-  padding-left: 0.9375rem;
-  padding-right: 0.9375rem;
+  padding-top: 0.9375rem;
 }
 
 .info-box {
   display: block;
-  min-height: 5.625rem;
-  background: #fff;
+  min-height: 4.625rem;
+  background: #ffffff;
   width: 100%;
   box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.1);
   border-radius: 0.125rem;
   margin-bottom: 0.9375rem;
-}
-
-.info-box small {
-  font-size: 0.875rem;
 }
 
 .info-box .progress {
@@ -106,30 +77,33 @@ body {
 }
 
 .info-box .progress .progress-bar {
-  background: #fff;
+  background: #ffffff;
 }
 
 .info-box-icon {
   border-radius: 0.125rem;
   display: block;
   float: left;
-  height: 5.625rem;
-  width: 5.625rem;
+  height: 4.625rem;
+  width: 4.625rem;
   text-align: center;
   font-size: 2.8125rem;
-  line-height: 5.625rem;
-  background: rgba(0, 0, 0, 0.2);
+  line-height: 4.625rem;
 }
 
 .info-box-icon > img {
   max-width: 100%;
 }
 
+.info-box-icon .ion {
+  color: #ffffff;
+}
+
 .info-box-content {
   text-align: center;
   height: 1.875rem;
   line-height: 1.875rem;
-  padding-top: 0.625rem;
+  padding-top: 0.325rem;
 }
 
 .info-box-text {
@@ -149,15 +123,19 @@ body {
 .bg-green {
   background-color: #00a65a !important;
 }
+
 .bg-red {
   background-color: #dd4b39 !important;
 }
+
 .bg-blue {
   background-color: #0073b7 !important;
 }
+
 .bg-aqua {
   background-color: #00c0ef !important;
 }
+
 .bg-maroon {
   background-color: #d81b60 !important;
 }
@@ -172,8 +150,12 @@ body {
   box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.1);
 }
 
+.box label {
+  margin-left: 0.5rem;
+}
+
 .box .nav-stacked > li {
-  border-bottom: 0.0625rem solid #f4f4f4;
+  border-bottom: 0.0625rem solid #ffffff;
   margin: 0;
 }
 
@@ -184,7 +166,7 @@ body {
 .box-header {
   color: #444;
   display: block;
-  padding: 0.625rem;
+  padding: 0.625rem 0.625rem 0;
   position: relative;
 }
 
@@ -217,32 +199,23 @@ body {
 
 .table th,
 .table td {
-  border-top: 0.0625rem solid #f4f4f4;
+  border-top: 0.0625rem solid #ffffff;
   padding: 0.5rem;
   text-align: left;
 }
 
 .table th {
   vertical-align: bottom;
-  border-bottom: 0.125rem solid #f4f4f4;
+  border-bottom: 0.125rem solid #ffffff;
   position: sticky;
   top: 0;
   z-index: 1;
 }
 
-.ion {
-  color: #f4f4f4;
-}
-
-.container {
-  width: 95%;
-  padding: 0;
-  height: calc(100% - 3.125rem);
-}
-
 .box-success {
   border-top-color: #00a65a;
 }
+
 .box-danger {
   border-top-color: #dd4b39;
 }
@@ -252,5 +225,69 @@ body {
   border-top-right-radius: 0.1875rem;
   border-bottom-right-radius: 0.1875rem;
   border-bottom-left-radius: 0.1875rem;
-  padding: 0.625rem;
+  padding: 0 0.625rem 0.625rem;
+}
+
+.box-success table.dataTable > tbody > tr,
+.box-success table.dataTable > thead > tr > th,
+.box-success table.dataTable > thead > tr > td {
+  border-bottom: 1px solid #00a65a !important;
+}
+
+.box-success .table {
+  --bs-table-striped-bg: rgba(0, 166, 90, 0.05);
+  --bs-table-hover-bg: rgba(0, 166, 90, 0.2);
+}
+
+.box-danger table.dataTable > tbody > tr,
+.box-danger table.dataTable > thead > tr > th,
+.box-danger table.dataTable > thead > tr > td {
+  border-bottom: 1px solid #dd4b39 !important;
+}
+
+.box-danger .dt-container.dt-empty-footer .dt-scroll-body,
+.box-success .dt-container.dt-empty-footer .dt-scroll-body {
+  border-bottom: 0 !important;
+}
+
+.box-danger .table {
+  --bs-table-striped-bg: rgba(221, 75, 57, 0.05);
+  --bs-table-hover-bg: rgba(221, 75, 57, 0.2);
+}
+
+.dt-container .dt-paging .dt-paging-button.current,
+.dt-container .dt-paging .dt-paging-button.current:hover {
+  border: none !important;
+  background: transparent !important;
+}
+
+.dt-scroll-body {
+  height: auto !important;
+}
+
+.box-success .dt-scroll-body::-webkit-scrollbar,
+.box-danger .dt-scroll-body::-webkit-scrollbar {
+  width: 0.714rem;
+}
+
+.box-success .dt-scroll-body::-webkit-scrollbar-thumb {
+  border-radius: 0.714rem;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 166, 90, 0.75);
+}
+
+.box-danger .dt-scroll-body::-webkit-scrollbar-thumb {
+  border-radius: 0.714rem;
+  -webkit-box-shadow: inset 0 0 6px rgba(221, 75, 57, 0.75);
+}
+
+.dt-scroll-body table.dataTable > thead > tr {
+  border-style: unset !important;
+}
+
+table.dataTable thead > tr > th.dt-orderable-asc:hover,
+table.dataTable thead > tr > th.dt-orderable-desc:hover,
+table.dataTable thead > tr > td.dt-orderable-asc:hover,
+table.dataTable thead > tr > td.dt-orderable-desc:hover {
+  outline: none !important;
+  outline-offset: 0 !important;
 }
