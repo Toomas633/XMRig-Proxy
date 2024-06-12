@@ -5,6 +5,8 @@
 # XMRig Proxy
 
 - [Running instructions](#running)
+- [Backend endpoints](#backend-endpoints)
+- [Developing](#developing)
 - [Suggestions](#suggestions)
 - [Donate](#donate)
 
@@ -61,6 +63,30 @@ Replace `"YOUR_MINING_POOL_URL"`, `"YOUR_WALLET_ADDRESS"`, `"x"`, and `"YOUR_ACC
 Generate `"ACCESS_TOKEN"` with `openssl rand -hex 16` or random string.
 
 Port 8080 is optional if you want direct access to XMRig proxy http api.
+
+## Backend endpoints
+
+/api endpoints on site:
+
+* /api?action=summary overall information
+* /api?action=workers gives worker information
+
+[XMRig proxy on port 8080](https://xmrig.com/docs/miner/api)
+
+## Developing
+
+Regular build: `docker build -t xmrig-proxy -f Dockerfile .`
+
+* Proxy port 3333
+* Proxy http api optional port 8080
+* UI port 80
+
+Mock backend for http api: `docker build -t xmrig-proxy -f Dockerfile.mock .`
+
+* Proxy port 3333
+* Proxy http api optional port 8081
+* Mock endpoint optional port 8080
+* UI port 80
 
 ## Suggestions
 
