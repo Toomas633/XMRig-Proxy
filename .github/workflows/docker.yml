@@ -3,14 +3,10 @@ name: Docker latest image
 on:
   release:
     types: [created]
+env:
+  date: $(date +%Y-%m-%d)
 
-jobs:
-  Set-Date:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set date
-        run: echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
-        
+jobs:     
   Deploy-latest:
     if: ${{ github.event_name == 'release' }}
     runs-on: ubuntu-latest
@@ -45,5 +41,5 @@ jobs:
             docker.io/toomas633/xmrig-proxy:${{ github.event.release.tag_name }}
             docker.io/toomas633/xmrig-proxy:latest
           labels: |
-            org.opencontainers.image.created=${{ env.DATE }}
+            org.opencontainers.image.created=${{ env.date }}
             org.opencontainers.image.version=${{ github.event.release.tag_name }}

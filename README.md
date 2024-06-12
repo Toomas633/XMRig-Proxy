@@ -5,6 +5,7 @@
 # XMRig Proxy
 
 - [Running instructions](#running)
+- [Options](#options)
 - [Backend endpoints](#backend-endpoints)
 - [Developing](#developing)
 - [Suggestions](#suggestions)
@@ -64,6 +65,13 @@ Generate `"ACCESS_TOKEN"` with `openssl rand -hex 16` or random string.
 
 Port 8080 is optional if you want direct access to XMRig proxy http api.
 
+## Options
+
+Options are located in options.js file:
+
+* `const const autoRefresh = true;` if the table data should be updated automatically or not (disable if using mock endpoint).
+* `const refreshInterval = 60000;` refresh interval in ms
+
 ## Backend endpoints
 
 /api endpoints on site:
@@ -87,6 +95,8 @@ Mock backend for http api: `docker build -t xmrig-proxy -f Dockerfile.mock .`
 * Proxy http api optional port 8081
 * Mock endpoint optional port 8080
 * UI port 80
+
+When using mock docker container, just refresh the page to get different values and table sizes.
 
 ## Suggestions
 
