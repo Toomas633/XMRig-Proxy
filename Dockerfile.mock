@@ -21,14 +21,7 @@ RUN apt-get update && \
     python3-pip \
     apache2 \
     php8.2 \
-    libapache2-mod-php \
-    ca-certificates \
-    git \
-    build-essential \
-    cmake \
-    libuv1-dev \
-    libssl-dev \
-    libhwloc-dev && \
+    libapache2-mod-php && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -36,16 +29,9 @@ RUN a2enmod rewrite
 
 RUN pip install Flask
 
-RUN git clone https://github.com/xmrig/xmrig-proxy.git /xmrig-proxy && \
-    cd /xmrig-proxy && \
-    mkdir build && cd build && \
-    cmake .. && \
-    make && \
-    cd / && rm -rf /xmrig-proxy/.git
-
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-EXPOSE 3333 80 8080 8081
+EXPOSE 80 8080
 
 COPY entrypoint_mock.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
