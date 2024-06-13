@@ -25,10 +25,10 @@ def generate_random_summary():
             "hardware_concurrency": random.randint(1, 32)
         },
         "features": random.sample(["api", "http", "tls", "ssh"], random.randint(1, 4)),
-        "version": f"{random.randint(1, 10)}.{random.randint(0, 99)}.{random.randint(0, 99)}",
+        "version": "6.21.1",
         "kind": random.choice(["proxy", "node"]),
         "algo": random.choice(["cryptonight", "argon2"]),
-        "mode": random.choice(["simple", "extended"]),
+        "mode": "simple",
         "ua": f"xmrig-proxy/{random.randint(1, 10)}.{random.randint(0, 99)}.{random.randint(0, 99)} (Linux x86_64) libuv/1.48.0 gcc/13.2.0",
         "donate_level": random.randint(0, 5),
         "donated": round(random.uniform(0.0, 100.0), 2),
@@ -67,13 +67,16 @@ def summary():
     summary_data = generate_random_summary()
     return jsonify(summary_data)
 
+
 def generate_random_ip():
     return ".".join(str(random.randint(0, 255)) for _ in range(4))
 
+
 def generate_random_time():
-    now = int(time.time())
-    ten_minutes_ago = now - 600
+    now = int(time.time() * 1000)
+    ten_minutes_ago = now - 600000
     return random.randint(ten_minutes_ago, now)
+
 
 def generate_random_workers():
     num_workers = random.randint(5, 20)
@@ -102,8 +105,8 @@ def generate_random_workers():
 def workers():
     workers_data = {
         "hashrate": {
-            "total": [random_float(0.0, 1000.0), random_float(0.0, 1000.0), 
-                      random_float(0.0, 1000.0), random_float(0.0, 1000.0), 
+            "total": [random_float(0.0, 1000.0), random_float(0.0, 1000.0),
+                      random_float(0.0, 1000.0), random_float(0.0, 1000.0),
                       random_float(0.0, 1000.0), random_float(0.0, 1000.0)]
         },
         "mode": "rig_id",
