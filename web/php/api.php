@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 function fetchData($endpoint)
 {
     $url = "http://localhost:8080/1/$endpoint";
