@@ -65,11 +65,10 @@ function updateSummary(data) {
 	$('#mode').text(`${data.mode}`);
 	$('#latency').text(`Ping: ${results.latency} ms`);
 	$('#avg_time').text(`Avg: ${results.avg_time} s`);
-	$('#best').text(`Best: ${results.best[0].toLocaleString()}`);
 	$('#effort').text(
 		`${((results.hashes_total / results.best[0]) * 100).toFixed(2)}%`
 	);
-	$('#version').text(`${data.version}`);
+	$('#proxy-version').text(`${data.version}`);
 }
 
 function updateWorkers(data) {
