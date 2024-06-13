@@ -1,8 +1,15 @@
-name: Docker latest image
+name: Docker dev image
 
 on:
-  release:
-    types: [created]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'The branch to run the workflow on'
+        required: true
+        type: choice
+        options:
+          - main
+          - develop
 
 jobs:
   Set-date:
@@ -20,7 +27,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event.inputs.branch }}
 
   Login-GHCR:
     runs-on: ubuntu-latest
@@ -52,10 +59,8 @@ jobs:
           context: .
           push: true
           tags: | 
-            ghcr.io/toomas633/xmrig-proxy:${{ github.event.release.tag_name }}
-            ghcr.io/toomas633/xmrig-proxy:latest
-            docker.io/toomas633/xmrig-proxy:${{ github.event.release.tag_name }}
-            docker.io/toomas633/xmrig-proxy:latest
+            ghcr.io/toomas633/xmrig-proxy:dev
+            docker.io/toomas633/xmrig-proxy:dev
           labels: |
             org.opencontainers.image.created=${{ needs.Set-date.outputs.date }}
-            org.opencontainers.image.version=${{ github.event.release.tag_name }}
+            org.opencontainers.image.version=dev
