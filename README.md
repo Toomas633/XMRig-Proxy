@@ -98,6 +98,8 @@ Mock backend for http api: `docker build -t xmrig-proxy -f Dockerfile.mock .`
 
 When using mock docker container, just refresh the page to get different values and table sizes.
 
+Icons: [ionicons](https://ionic.io/ionicons)
+
 ## Suggestions
 
 Suggestions are welcome and can be posted under the issues.
