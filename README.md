@@ -20,7 +20,7 @@ Simple ubuntu docker image with the latest XMRig Proxy cloned from [official xmr
 | -p 3333            |               | Port 3333 used to connect miners to proxy                   |
 | -p 80              |               | Port 80 used to serve the statistics panel                  |
 | -p 8080 (optional) |               | Port 8080 to access xmrig proxy http api directly if needed |
-| -e POOL_URL        | null          | URL or IP:Port to desired mining pool                     |
+| -e POOL_URL        | null          | URL or IP:Port to desired mining pool                       |
 | -e USER            | null          | Wallet address (wallet.display_name if supported by pool)   |
 | -e PASS (optional) | x             | Pass or display name for supported pools                    |
 | -e ALGO (optional) | rx/0          | Mining algorithm                                            |
@@ -67,17 +67,25 @@ Port 8080 is optional if you want direct access to XMRig proxy http api.
 
 ## Options
 
-Options are located in options.js file:
+Options are located at the start of `web/js/script.js` file:
 
-* `const const autoRefresh = true;` if the table data should be updated automatically or not (disable if using mock endpoint).
-* `const refreshInterval = 60000;` refresh interval in ms
+- `const const autoRefresh = true;` if the table data should be updated automatically or not (disable if using mock endpoint).
+- `const refreshInterval = 60000;` refresh interval in ms
 
 ## Backend endpoints
 
 /api endpoints on site:
 
-* /api?action=summary overall information
-* /api?action=workers gives worker information
+- /api/summary overall information
+- /api/workers gives worker information
+
+To add endpoints edit the `apache-config.conf` file and add or edit the rewrite lines here and add a respective endpoint handeling to `web/php/api.php`:
+
+```
+RewriteEngine On
+RewriteRule ^/api/workers$ /php/api.php?action=workers [L,QSA]
+RewriteRule ^/api/summary$ /php/api.php?action=summary [L,QSA]
+```
 
 [XMRig proxy on port 8080](https://xmrig.com/docs/miner/api)
 
@@ -85,16 +93,16 @@ Options are located in options.js file:
 
 Regular build: `docker build -t xmrig-proxy -f Dockerfile .`
 
-* Proxy port 3333
-* Proxy http api optional port 8080
-* UI port 80
+- Proxy port 3333
+- Proxy http api optional port 8080
+- UI port 80
 
 Mock backend for http api: `docker build -t xmrig-proxy -f Dockerfile.mock .`
 
-* Proxy port 3333
-* Proxy http api optional port 8081
-* Mock endpoint optional port 8080
-* UI port 80
+- Proxy port 3333
+- Proxy http api optional port 8081
+- Mock endpoint optional port 8080
+- UI port 80
 
 When using mock docker container, just refresh the page to get different values and table sizes.
 
